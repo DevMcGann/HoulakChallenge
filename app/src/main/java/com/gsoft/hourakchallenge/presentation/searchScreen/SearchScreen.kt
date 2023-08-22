@@ -74,7 +74,9 @@ fun SearchScreen(navController: NavHostController) {
             LazyColumn(
                 content = {
                     items(mainViewModel.feedState.feedDate.size) {
-                        ArtistCard(mainViewModel.feedState.feedDate[it], onClick = {})
+                        ArtistCard(mainViewModel.feedState.feedDate[it], onClick = {
+                            navController.navigate("detail/${mainViewModel.feedState.feedDate[it].id}")
+                        })
                     }
                 },
                 modifier = Modifier

@@ -5,6 +5,6 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 
 @Composable
-fun DetailScreen(navController: NavHostController) {
-    Text(text = "detail")
+fun DetailScreen(navController: NavHostController, id: String?) {
+    Text(text = "Artist id: $id")
 }

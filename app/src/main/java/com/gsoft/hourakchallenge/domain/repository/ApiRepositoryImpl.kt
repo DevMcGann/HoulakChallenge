@@ -29,9 +29,15 @@ class ApiRepositoryImpl @Inject constructor(
             }
         }
 
-    override suspend fun getArtistTracks(id: String): Flow<MyResource<List<TrackResponse>>> {
-        return  try {
-            flowOf(MyResource.Success(api.getArtistTopTracks(id)))
+    override suspend fun getArtistTracks(id: String): Flow<MyResource<List<TrackResponse>?>> {
+        return try {
+            val response = api.getArtistTopTracks(id)
+            if (response.isSuccessful) {
+                val searchResponse = response.body()
+                flowOf(MyResource.Success(searchResponse))
+            } else {
+                flowOf(MyResource.Failure(Exception("Request failed with code ${response.code()}")))
+            }
         } catch (e: Exception) {
             flowOf(MyResource.Failure(e))
         }

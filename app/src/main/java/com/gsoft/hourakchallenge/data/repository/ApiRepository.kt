@@ -7,5 +7,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface ApiRepository {
     suspend fun getArtists(query: String): Flow<MyResource<SearchResponse?>>
-    suspend fun getArtistTracks(id: String): Flow<MyResource<List<TrackResponse>>>
+    suspend fun getArtistTracks(id: String): Flow<MyResource<List<TrackResponse>?>>
 }

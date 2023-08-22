@@ -14,12 +14,3 @@ class getTokenUsecase @Inject constructor(
     }
 }
 
-
-/*
-class isAuthUsecase @Inject constructor(
-    @Named("auth")private val authRepository: AuthRepository
-    ) {
-    suspend operator fun invoke(): Boolean {
-        return authRepository.isAuth()
-    }
-}*/

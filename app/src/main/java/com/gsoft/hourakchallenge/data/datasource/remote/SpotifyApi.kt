@@ -1,5 +1,6 @@
 package com.gsoft.hourakchallenge.data.datasource.remote
 
+import com.gsoft.hourakchallenge.data.model.Artist
 import com.gsoft.hourakchallenge.data.model.SearchResponse
 import com.gsoft.hourakchallenge.data.model.TrackResponse
 import retrofit2.Response
@@ -18,8 +19,13 @@ interface SpotifyApi {
         @Query("offset") offset: Int
     ): Response<SearchResponse>
 
+
+    @GET("artists/{id}")
+    suspend fun getArtist(@Path("id") id: String): Response<Artist>
+
+
     @GET("artists/{id}/top-tracks")
-    suspend fun getArtistTopTracks(@Path("id") id: String): List<TrackResponse>
+    suspend fun getArtistTopTracks(@Path("id") id: String): Response<List<TrackResponse>>
 
 }
 

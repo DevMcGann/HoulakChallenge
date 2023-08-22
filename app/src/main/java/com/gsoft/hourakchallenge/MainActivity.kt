@@ -32,7 +32,9 @@ class MainActivity : ComponentActivity() {
                     NavHost(navController = navController, startDestination = "splash") {
                         composable("splash") { SplashScreen(navController = navController) }
                         composable("search") { SearchScreen(navController) }
-                        composable("detail") { DetailScreen(navController) }
+                        composable("detail/{id}") { backStackEntry ->
+                            val id = backStackEntry.arguments?.getString("id")
+                            DetailScreen(navController = navController, id = id) }
                     }
                 }
             }

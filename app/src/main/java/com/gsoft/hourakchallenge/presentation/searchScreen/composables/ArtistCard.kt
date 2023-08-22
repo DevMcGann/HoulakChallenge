@@ -21,14 +21,17 @@ import com.gsoft.hourakchallenge.R
 import com.gsoft.hourakchallenge.data.model.Artist
 
 @Composable
-fun ArtistCard(artist: Artist, onClick : () -> Unit ) {
+fun ArtistCard(
+    artist: Artist,
+    onClick : () -> Unit
+) {
     Row (
 
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Start,
         modifier = Modifier.fillMaxWidth().height(100.dp)
             .padding(horizontal = 20.dp, vertical = 10.dp)
-            .clickable { onClick()  },
+            .clickable { onClick() },
         ){
         if(artist.images.isNotEmpty()){
             AsyncImage(

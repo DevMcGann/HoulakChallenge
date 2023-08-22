@@ -1,18 +1,11 @@
 package com.gsoft.hourakchallenge.presentation.splashScreen
 
-import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gsoft.hourakchallenge.domain.usecase.getTokenUsecase
-import com.gsoft.hourakchallenge.domain.usecase.isAuthUsecase
-import com.gsoft.hourakchallenge.util.Contants.KEY_SHARED_PREFERENCE
-import com.gsoft.hourakchallenge.util.SharePreferencesManager
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.async
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -26,8 +19,8 @@ data class SplashState(
 @HiltViewModel
 class SplashViewModel @Inject constructor(
     private val getTokenUsecase: getTokenUsecase,
-    private val isAuthUsecase: isAuthUsecase,
-    private val sharePreferencesManager: SharePreferencesManager
+    //private val isAuthUsecase: isAuthUsecase,
+    //private val sharePreferencesManager: SharePreferencesManager
 ) : ViewModel() {
 
     private val _state = mutableStateOf(SplashState())
@@ -35,7 +28,7 @@ class SplashViewModel @Inject constructor(
 
 
     init {
-        isAuth()
+        getToken()
     }
 
 
@@ -45,7 +38,7 @@ class SplashViewModel @Inject constructor(
             try {
                  val token = getTokenUsecase.invoke()
                 if(token != null){
-                    sharePreferencesManager.setString(KEY_SHARED_PREFERENCE, token)
+                    //sharePreferencesManager.setString(KEY_SHARED_PREFERENCE, token)
                     _state.value = _state.value.copy(isLoading = false)
                     _state.value = _state.value.copy(isAuth = true)
                 }
@@ -59,7 +52,7 @@ class SplashViewModel @Inject constructor(
 
     }
 
-     fun isAuth() : Boolean{
+    /* fun isAuth() : Boolean{
         viewModelScope.launch {
             _state.value = _state.value.copy(isLoading = true)
             try {
@@ -81,6 +74,6 @@ class SplashViewModel @Inject constructor(
          Log.d("AUTH", "isAuth: ${_state.value.isAuth}")
          return _state.value.isAuth
 
-    }
+    }*/
 
 }

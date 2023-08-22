@@ -5,9 +5,10 @@ import com.gsoft.hourakchallenge.data.datasource.remote.SpotifyAuthService
 import com.gsoft.hourakchallenge.data.repository.AuthRepository
 import com.gsoft.hourakchallenge.util.Contants
 import com.gsoft.hourakchallenge.util.SharePreferencesManager
+import javax.inject.Inject
 
 
-class AuthRepositoryImpl  (
+class AuthRepositoryImpl @Inject constructor (
     private val authApi: SpotifyAuthService,
     private val sharePreferencesManager: SharePreferencesManager
         ): AuthRepository {
@@ -19,7 +20,7 @@ class AuthRepositoryImpl  (
         )
 
         if (response.isSuccessful) {
-            Log.d("TOKEEEN", "fetchAccessToken: ${response.body()}  response= ${response.code()}")
+            Log.d("TOKEN", "fetchAccessToken: ${response.body()}  response= ${response.code()}")
             return response.body()?.accessToken
         }
         return null

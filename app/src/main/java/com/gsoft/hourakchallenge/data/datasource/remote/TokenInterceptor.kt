@@ -19,7 +19,7 @@ class TokenInterceptor @Inject constructor(
 
         var request = chain.request()
 
-        if(request.header("No-Authentication") == null && token.isNotEmpty()){
+        if(request.header("Authorization") == null && token.isNotEmpty()){
             request = request.newBuilder()
                 .addHeader("Authorization", "Bearer $token")
                 .build()

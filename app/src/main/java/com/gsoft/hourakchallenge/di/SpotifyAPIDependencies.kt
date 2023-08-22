@@ -12,18 +12,20 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 class SpotifyAPIDependencies {
     companion object {
-        private const val apiBaseUrl =  Contants.BASE_URL
+        private const val apiUrl =  Contants.BASE_URL
     }
+
 
     @Provides
     @Singleton
-    @ApiService
+    @Named("api")
     fun provideOkHttpClient(
         tokenInterceptor: TokenInterceptor,
     ): OkHttpClient {
@@ -33,31 +35,33 @@ class SpotifyAPIDependencies {
             .writeTimeout(60, TimeUnit.SECONDS)
             .addInterceptor(tokenInterceptor)
         return okHttpClientBuilder.build()
-
     }
+
 
     @Provides
     @Singleton
-    @ApiService
+    @Named("api")
     fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
         return HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
     }
 
 
 
-    @Singleton
-    @Provides
-    @ApiService
-    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
-        .addConverterFactory(GsonConverterFactory.create())
-        .baseUrl(apiBaseUrl)
-        .client(okHttpClient)
-        .build()
 
     @Singleton
     @Provides
-    @ApiService
-    fun provideApiService(retrofit: Retrofit): SpotifyApi = retrofit.create(SpotifyApi::class.java)
+    @Named("api")
+    fun provideRetrofit( @Named("api") okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
+        .addConverterFactory(GsonConverterFactory.create())
+        .baseUrl(apiUrl)
+        .client(okHttpClient)
+        .build()
+
+
+    @Singleton
+    @Provides
+    @Named("api")
+    fun provideApiService(@Named("api") retrofit: Retrofit): SpotifyApi = retrofit.create(SpotifyApi::class.java)
 
 
 }

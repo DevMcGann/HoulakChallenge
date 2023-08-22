@@ -11,6 +11,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Named
 import javax.inject.Singleton
 
 
@@ -20,8 +21,9 @@ class RepositoryDependencies {
 
     @Provides
     @Singleton
+    @Named("api")
     fun provideApiRepository(
-        api: SpotifyApi
+        @Named("api")api: SpotifyApi
     ): ApiRepository {
         return ApiRepositoryImpl(
             api = api,
@@ -31,8 +33,9 @@ class RepositoryDependencies {
 
     @Provides
     @Singleton
+    @Named("auth")
     fun provideAuthRepository(
-        api: SpotifyAuthService,
+        @Named("auth")api: SpotifyAuthService,
         sharedPreference : SharePreferencesManager
     ): AuthRepository {
         return AuthRepositoryImpl(

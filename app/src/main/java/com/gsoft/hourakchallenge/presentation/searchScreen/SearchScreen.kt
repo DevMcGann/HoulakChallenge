@@ -32,7 +32,7 @@ fun SearchScreen(navController: NavHostController) {
             .fillMaxSize()
             .background(Color.Black)
     ) {
-        val (searchComponent, searchResult, loading, error, welcome) = createRefs()
+        val (searchComponent, searchResult, loading, welcome) = createRefs()
 
         Box(modifier = Modifier.constrainAs(searchComponent) {
             top.linkTo(parent.top)

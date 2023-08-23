@@ -2,8 +2,9 @@ package com.gsoft.hourakchallenge.domain.repository
 
 import android.util.Log
 import com.gsoft.hourakchallenge.data.datasource.remote.SpotifyApi
+import com.gsoft.hourakchallenge.data.model.Artist
 import com.gsoft.hourakchallenge.data.model.SearchResponse
-import com.gsoft.hourakchallenge.data.model.TrackResponse
+import com.gsoft.hourakchallenge.data.model.TracksResponse
 import com.gsoft.hourakchallenge.data.repository.ApiRepository
 import com.gsoft.hourakchallenge.util.Contants
 import com.gsoft.hourakchallenge.util.MyResource
@@ -29,11 +30,26 @@ class ApiRepositoryImpl @Inject constructor(
             }
         }
 
-    override suspend fun getArtistTracks(id: String): Flow<MyResource<List<TrackResponse>?>> {
+    override suspend fun getArtist(id: String): Flow<MyResource<Artist?>> {
         return try {
-            val response = api.getArtistTopTracks(id)
+            val response = api.getArtist(id)
             if (response.isSuccessful) {
                 val searchResponse = response.body()
+                flowOf(MyResource.Success(searchResponse))
+            } else {
+                flowOf(MyResource.Failure(Exception("Request failed with code ${response.code()}")))
+            }
+        } catch (e: Exception) {
+            flowOf(MyResource.Failure(e))
+        }
+    }
+
+    override suspend fun getArtistTracks(id: String):  Flow<MyResource<TracksResponse?>>{
+        return try {
+            val response = api.getArtistTopTracks(id, "AR")
+            if (response.isSuccessful) {
+                val searchResponse = response.body()
+                Log.d("TRACKS", "getArtistTracks: $searchResponse")
                 flowOf(MyResource.Success(searchResponse))
             } else {
                 flowOf(MyResource.Failure(Exception("Request failed with code ${response.code()}")))

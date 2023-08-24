@@ -10,7 +10,6 @@ import retrofit2.http.Query
 
 
 interface SpotifyApi {
-
     @GET("search")
     suspend fun searchArtists(
         @Query("q") query: String,
@@ -19,10 +18,8 @@ interface SpotifyApi {
         @Query("offset") offset: Int
     ): Response<SearchResponse>
 
-
     @GET("artists/{id}")
     suspend fun getArtist(@Path("id") id: String): Response<Artist>
-
 
     @GET("artists/{id}/top-tracks")
     suspend fun getArtistTopTracks(@Path("id") id: String,  @Query("market") market: String): Response<TracksResponse>

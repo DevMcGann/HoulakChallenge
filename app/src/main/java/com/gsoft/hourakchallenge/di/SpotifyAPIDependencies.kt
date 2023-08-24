@@ -22,7 +22,6 @@ class SpotifyAPIDependencies {
         private const val apiUrl =  Contants.BASE_URL
     }
 
-
     @Provides
     @Singleton
     @Named("api")
@@ -44,7 +43,6 @@ class SpotifyAPIDependencies {
     fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
         return HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
     }
-
 
 
 

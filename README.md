@@ -26,6 +26,7 @@ Once the list of artists get rendered,  we can tap on any of them and navigate t
 Detail Screen... In this screen,  all the relevant info about the artist is showed.  Like an Image,  Name,  Genres and top 5 songs (ordered by popularity)
 
 ##Screenshots
-
+<div style="width:60px ; height:60px">
 ![1](https://github.com/DevMcGann/HoulakChallenge/assets/32915926/eca204af-3bef-43af-bc59-b30f98e15e23)
+</div>
 ![2](https://github.com/DevMcGann/HoulakChallenge/assets/32915926/21b07b34-f143-433a-9b13-cfe512f7e878)

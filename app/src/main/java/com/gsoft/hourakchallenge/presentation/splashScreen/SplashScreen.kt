@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -43,7 +44,7 @@ fun SplashScreen(
         verticalArrangement = Arrangement.Center
     ) {
 
-        Image(painter = painterResource(id = R.drawable.spoty), contentDescription = "Spoty")
+        Image(painter = painterResource(id = R.drawable.spoty), contentDescription = stringResource(id = R.string.spoti_logo))
 
         if (splashViewModel.state.value.isLoading) {
             CircularProgressIndicator(color = Color.White)
@@ -61,7 +62,7 @@ fun SplashScreen(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    "Oops! Something went wrong",
+                    stringResource(id = R.string.something_went_wrong),
                     color = Color.White,
                     fontSize = 20.sp,
                     textAlign = TextAlign.Center

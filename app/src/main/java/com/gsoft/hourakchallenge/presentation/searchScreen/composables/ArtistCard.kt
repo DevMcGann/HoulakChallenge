@@ -4,7 +4,6 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -21,6 +20,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -54,7 +54,7 @@ fun ArtistCard(
             if (artist.images.isNotEmpty()) {
                 AsyncImage(
                     model = artist.images[0].url,
-                    contentDescription = "artist image",
+                    contentDescription = stringResource(id = R.string.artist_image_description),
                     placeholder = painterResource(id = R.drawable.spoty),
                     contentScale = ContentScale.Crop,
                     modifier = Modifier

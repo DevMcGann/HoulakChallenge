@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.gsoft.hourakchallenge.R
 import androidx.compose.foundation.Image
+import androidx.compose.ui.res.stringResource
 
 
 @Composable
@@ -22,7 +23,7 @@ fun Message(message : String, color : Color) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Image(painter = painterResource(id = R.drawable.spoty), contentDescription = "logo")
+        Image(painter = painterResource(id = R.drawable.spoty), contentDescription = stringResource(id = R.string.spoti_logo))
         Text( message, color = color, fontSize = 20.sp ,textAlign = TextAlign.Center, modifier = Modifier.padding(horizontal = 12.dp))
     }
 }

@@ -6,7 +6,6 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gsoft.hourakchallenge.data.model.Artist
-import com.gsoft.hourakchallenge.data.model.SearchResponse
 import com.gsoft.hourakchallenge.domain.usecase.SearchArtistsUsecase
 import com.gsoft.hourakchallenge.util.MyResource
 import dagger.hilt.android.lifecycle.HiltViewModel

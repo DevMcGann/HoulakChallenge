@@ -8,7 +8,6 @@ import retrofit2.http.Header
 import retrofit2.http.Headers
 import retrofit2.http.POST
 
-
 interface SpotifyAuthService {
 
     @Headers("Content-Type: application/x-www-form-urlencoded")

@@ -22,6 +22,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -51,7 +52,7 @@ fun ArtistInfo(
         if(artist.images.isNotEmpty()){
             AsyncImage(
                 model = artist.images[0].url,
-                contentDescription = "artist image",
+                contentDescription = stringResource(id = R.string.artist_image_description),
                 placeholder = painterResource(id = R.drawable.spoty),
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
@@ -73,7 +74,7 @@ fun ArtistInfo(
 
         //genres
         if (artist.genres.isNotEmpty()) {
-            Text("Genres", color = Color.Green, fontSize = 25.sp)
+            Text(stringResource(id = R.string.genres), color = Color.Green, fontSize = 25.sp)
             LazyRow(
                 content = {
                     items(artist.genres.size) {
@@ -95,7 +96,7 @@ fun ArtistInfo(
 
         //songs
         if (!songs.isNullOrEmpty()) {
-            Text("Top Tracks", color = Color.Green, fontSize = 25.sp, modifier = Modifier.padding(top = 30.dp))
+            Text(stringResource(id = R.string.top_tracks), color = Color.Green, fontSize = 25.sp, modifier = Modifier.padding(top = 30.dp))
             LazyColumn(
                 content = {
                     items(songs.size) {
@@ -117,16 +118,11 @@ fun ArtistInfo(
 
         //go back
         IconButton(onClick = { back()}) {
-            Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "back", tint = Color.Green )
+            Icon(imageVector = Icons.Default.ArrowBack, contentDescription = stringResource(id = R.string.back_description), tint = Color.Green )
         }
 
     }
 }
-
-
-
-
-
 
 
 

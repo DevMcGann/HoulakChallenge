@@ -96,7 +96,9 @@ fun DetailScreen(navController: NavHostController, id: String?) {
                 end.linkTo(parent.end)
                 bottom.linkTo(parent.bottom)
             }) {
-                ArtistInfo(artist = detailViewModel.detailState.artistData!!, songs = detailViewModel.detailState.tracks)
+                ArtistInfo(artist = detailViewModel.detailState.artistData!!, songs = detailViewModel.detailState.tracks, back = {
+                    navController.popBackStack()
+                })
             }
         }
 

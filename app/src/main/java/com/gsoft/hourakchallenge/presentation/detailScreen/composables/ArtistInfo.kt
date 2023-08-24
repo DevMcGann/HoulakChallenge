@@ -3,8 +3,10 @@ package com.gsoft.hourakchallenge.presentation.detailScreen.composables
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -12,6 +14,8 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -56,7 +60,7 @@ fun ArtistInfo(
                 placeholder = painterResource(id = R.drawable.spoty),
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .size(300.dp)
+                    .size(200.dp)
                     .clip(CircleShape)
             )
         }
@@ -78,13 +82,7 @@ fun ArtistInfo(
             LazyRow(
                 content = {
                     items(artist.genres.size) {
-                        Text(
-                            text = artist.genres[it],
-                            color = Color.White,
-                            fontSize = 18.sp,
-                            modifier = Modifier.padding(horizontal = 6.dp),
-                            textAlign = TextAlign.Center
-                        )
+                        GenreRow(genre = artist.genres[it])
                     }
                 },
                 modifier = Modifier
@@ -100,13 +98,7 @@ fun ArtistInfo(
             LazyColumn(
                 content = {
                     items(songs.size) {
-                        Text(
-                            text = songs[it].name,
-                            color = Color.White,
-                            fontSize = 18.sp,
-                            modifier = Modifier.padding(bottom = 10.dp),
-                            textAlign = TextAlign.Center
-                        )
+                        TrackRow(track = songs[it])
                     }
                 },
                 modifier = Modifier
@@ -123,7 +115,6 @@ fun ArtistInfo(
 
     }
 }
-
 
 
 @Preview(showBackground = true)

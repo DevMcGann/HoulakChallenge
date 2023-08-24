@@ -18,7 +18,6 @@ import androidx.navigation.compose.rememberNavController
 import com.gsoft.hourakchallenge.presentation.detailScreen.composables.ArtistInfo
 import com.gsoft.hourakchallenge.presentation.searchScreen.composables.Message
 
-
 @Composable
 fun DetailScreen(navController: NavHostController, id: String?) {
 

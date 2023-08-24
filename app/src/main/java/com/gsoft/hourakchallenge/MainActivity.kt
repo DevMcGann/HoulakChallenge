@@ -7,16 +7,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.gsoft.hourakchallenge.presentation.detailScreen.DetailScreen
-import com.gsoft.hourakchallenge.presentation.detailScreen.DetailViewModel
 import com.gsoft.hourakchallenge.presentation.searchScreen.SearchScreen
-import com.gsoft.hourakchallenge.presentation.searchScreen.SearchViewModel
 import com.gsoft.hourakchallenge.presentation.splashScreen.SplashScreen
-import com.gsoft.hourakchallenge.presentation.splashScreen.SplashViewModel
 import com.gsoft.hourakchallenge.ui.theme.HourakChallengeTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,22 +24,17 @@ class MainActivity : ComponentActivity() {
         setContent {
             val navController = rememberNavController()
 
-            /*val splashViewModel = hiltViewModel<SplashViewModel>()
-            val searchViewModel = hiltViewModel<SearchViewModel>()
-            val detailViewModel = hiltViewModel<DetailViewModel>()*/
-
             HourakChallengeTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
                     NavHost(navController = navController, startDestination = "splash") {
-                        composable("splash") { SplashScreen(
-                            navController = navController
-                        )
-                        }
+                        composable("splash") { SplashScreen(navController = navController) }
                         composable("search") { SearchScreen(navController) }
-                        composable("detail") { DetailScreen(navController) }
+                        composable("detail/{id}") { backStackEntry ->
+                            val id = backStackEntry.arguments?.getString("id")
+                            DetailScreen(navController = navController, id = id) }
                     }
                 }
             }

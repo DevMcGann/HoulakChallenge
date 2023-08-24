@@ -10,6 +10,10 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -32,7 +36,8 @@ import com.gsoft.hourakchallenge.data.model.Track
 @Composable
 fun ArtistInfo(
     artist: Artist,
-    songs: List<Track>? = null
+    songs: List<Track>? = null,
+    back : () -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -49,7 +54,8 @@ fun ArtistInfo(
                 contentDescription = "artist image",
                 placeholder = painterResource(id = R.drawable.spoty),
                 contentScale = ContentScale.Crop,
-                modifier = Modifier.size(300.dp)
+                modifier = Modifier
+                    .size(300.dp)
                     .clip(CircleShape)
             )
         }
@@ -109,6 +115,11 @@ fun ArtistInfo(
             )
         }
 
+        //go back
+        IconButton(onClick = { back()}) {
+            Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "back", tint = Color.Green )
+        }
+
     }
 }
 
@@ -137,5 +148,5 @@ fun PreviewArtistInfo() {
         Track("4", "Travelling Band", 100),
 
     )
-    ArtistInfo(artist = artist, songs  = tracks)
+    ArtistInfo(artist = artist, songs  = tracks, back = {})
 }

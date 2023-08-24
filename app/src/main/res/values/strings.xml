@@ -8,4 +8,5 @@
     <string name="something_went_wrong">Oops! Something went wrong!</string>
     <string name="search_by_artist">Search By Artist</string>
     <string name="search_button_description">Search Button</string>
+    <string name="song_icon_description">Song icon description</string>
 </resources>

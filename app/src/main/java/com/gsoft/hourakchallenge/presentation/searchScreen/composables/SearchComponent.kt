@@ -40,8 +40,7 @@ fun SearchComponent(fetchData : (query: String) -> Unit) {
             onValueChange = { textState.value = it },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
-            shape = RoundedCornerShape(12.dp),
+                .padding(10.dp),
             colors = TextFieldDefaults.textFieldColors(
                 textColor = Color.Green,
                 disabledTextColor = Color.Green,
@@ -62,8 +61,7 @@ fun SearchComponent(fetchData : (query: String) -> Unit) {
             Icon(
                 imageVector = Icons.Default.Search,
                 contentDescription = "searchButton",
-                //tint = Color.Green,
-                modifier = Modifier.size(24.dp)
+                modifier = Modifier.size(60.dp)
             )
         }
     }

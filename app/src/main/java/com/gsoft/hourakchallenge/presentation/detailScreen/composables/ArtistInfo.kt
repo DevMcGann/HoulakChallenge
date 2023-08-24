@@ -9,13 +9,16 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -47,15 +50,18 @@ fun ArtistInfo(
                 placeholder = painterResource(id = R.drawable.spoty),
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.size(300.dp)
+                    .clip(CircleShape)
             )
         }
         //artist name
         Text(
             text = artist.name,
-            color = Color.Red,
+            fontWeight = FontWeight.Bold,
+            color = Color.Green,
             fontSize = 35.sp,
+            lineHeight = 50.sp,
             textAlign = TextAlign.Center,
-            modifier = Modifier.padding(vertical = 18.dp)
+            modifier = Modifier.padding(vertical = 20.dp, horizontal = 20.dp)
         )
 
 
@@ -67,23 +73,23 @@ fun ArtistInfo(
                     items(artist.genres.size) {
                         Text(
                             text = artist.genres[it],
-                            color = Color.Yellow,
+                            color = Color.White,
                             fontSize = 18.sp,
-                            modifier = Modifier.padding(horizontal = 5.dp),
+                            modifier = Modifier.padding(horizontal = 6.dp),
                             textAlign = TextAlign.Center
                         )
                     }
                 },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = 10.dp),
+                    .padding(vertical = 10.dp, horizontal = 10.dp),
                 horizontalArrangement = Arrangement.Center
             )
         }
 
         //songs
         if (!songs.isNullOrEmpty()) {
-            Text("Top Tracks", color = Color.Green, fontSize = 25.sp, modifier = Modifier.padding(top = 20.dp))
+            Text("Top Tracks", color = Color.Green, fontSize = 25.sp, modifier = Modifier.padding(top = 30.dp))
             LazyColumn(
                 content = {
                     items(songs.size) {
@@ -91,14 +97,14 @@ fun ArtistInfo(
                             text = songs[it].name,
                             color = Color.White,
                             fontSize = 18.sp,
-                            modifier = Modifier.padding(bottom = 5.dp),
+                            modifier = Modifier.padding(bottom = 10.dp),
                             textAlign = TextAlign.Center
                         )
                     }
                 },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = 10.dp),
+                    .padding(top = 20.dp, bottom = 10.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             )
         }
@@ -118,9 +124,9 @@ fun ArtistInfo(
 fun PreviewArtistInfo() {
     val artist = Artist(
         id = "1",
-        name = "Creende Clearwater Revival",
+        name = "Creendence Clearwater Revival",
         popularity = 1,
-        images = listOf<Image>(Image(url = "https://imgs.search.brave.com/u9Cx957dZe7ZqVQ6lmWEpE6aQiKRn_AlpVfqsbwm5T4/rs:fit:860:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy9l/L2VlL0NyZWVkZW5j/ZV9DbGVhcndhdGVy/X1Jldml2YWxfMTk2/OC5qcGc", height = 300, width = 300)),
+        images = listOf<Image>(Image(url = "url", height = 300, width = 300)),
         genres = listOf("Rock", "Pop", "Country", "BlueGrass"),
     )
 

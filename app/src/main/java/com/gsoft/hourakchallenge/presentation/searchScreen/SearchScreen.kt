@@ -87,7 +87,7 @@ fun SearchScreen(navController: NavHostController) {
                         bottom.linkTo(parent.bottom, margin = 150.dp)
                     }
                     .fillMaxWidth()
-                    .height(500.dp)
+                    .height(600.dp)
             )
         }
 
